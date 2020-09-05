@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   registerButton: {
-    backgroundColor: "#38C570",
+    backgroundColor: "#434CFF",
     width: 270,
     height: 65,
     borderRadius: 7,

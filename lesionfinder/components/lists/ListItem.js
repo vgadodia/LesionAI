@@ -23,49 +23,47 @@ function ListItem({
   maps,
 }) {
   return (
-    <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
-      <View style={styles.container}>
-        {IconComponent}
-        {/* {image && <Image style={styles.image} source={{ uri: image }} />} */}
-        <View style={styles.image}>
+    <View style={styles.container}>
+      {IconComponent}
+      {/* {image && <Image style={styles.image} source={{ uri: image }} />} */}
+      {/* <View style={styles.image}>
           <MaterialCommunityIcons
             name="map-marker-radius"
             color={"white"}
             size={40}
           />
-        </View>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.title} numberOfLines={1}>
-            {title}
+        </View> */}
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
+        {subTitle && (
+          <Text style={styles.subTitle} numberOfLines={1}>
+            {subTitle}
           </Text>
-          {subTitle && (
-            <Text style={styles.subTitle} numberOfLines={1}>
-              {subTitle}
-            </Text>
-          )}
-          <View style={styles.infoButtons}>
-            <TouchableOpacity
-              style={styles.learnMore}
-              onPress={() => Linking.openURL(link)}
-            >
-              <Text style={styles.mapsText}>Learn More</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.maps}
-              onPress={() => Linking.openURL(maps)}
-            >
-              <Text style={styles.mapsText}>Maps</Text>
-            </TouchableOpacity>
-          </View>
+        )}
+        <View style={styles.infoButtons}>
+          <TouchableOpacity
+            style={styles.learnMore}
+            onPress={() => Linking.openURL(link)}
+          >
+            <Text style={styles.mapsText}>Learn More</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.maps}
+            onPress={() => Linking.openURL(maps)}
+          >
+            <Text style={styles.mapsText}>Maps</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </TouchableHighlight>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   learnMore: {
-    backgroundColor: "#38C570",
+    backgroundColor: "#F49F1C",
     justifyContent: "center",
     alignItems: "center",
     top: 10,
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   maps: {
-    backgroundColor: "#4D8AF0",
+    backgroundColor: "#434CFF",
     justifyContent: "center",
     alignItems: "center",
     top: 10,
@@ -99,18 +97,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginBottom: 20,
     borderRadius: 12,
+    paddingBottom: 25,
   },
   detailsContainer: {
     flex: 1,
     marginLeft: 10,
     justifyContent: "center",
-    left: 10,
+    left: 0,
   },
   image: {
     width: 60,
     height: 60,
     borderRadius: 35,
-    backgroundColor: "#4D8AF0",
+    backgroundColor: "#434CFF",
     justifyContent: "center",
     alignItems: "center",
     left: 5,
