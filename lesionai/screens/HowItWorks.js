@@ -52,7 +52,7 @@ function HowItWorks({ navigation }) {
 
       <TouchableOpacity
         style={styles.registerButton}
-        onPress={() => navigation.navigate("AppNavigator")}
+        onPress={() => navigation.navigate("EnterInformationScreen")}
       >
         <Text style={styles.registerText}>Continue</Text>
       </TouchableOpacity>

@@ -6,6 +6,7 @@ import CameraScreen from "../screens/CameraScreen";
 import ConfirmImage from "../screens/ConfirmImage";
 import ResultsScreen from "../screens/ResultsScreen";
 import ConfirmLibraryImage from "../screens/ConfirmLibraryImage";
+import MessagesScreen from "../screens/MessagesScreen";
 
 const Stack = createStackNavigator();
 

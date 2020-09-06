@@ -20,7 +20,6 @@ import {
 
 function ResultsScreen({ route, navigation }) {
   const { diagnosis, confidence } = route.params;
-  console.log(diagnosis, confidence);
 
   return (
     <View style={styles.container}>
@@ -37,14 +36,14 @@ function ResultsScreen({ route, navigation }) {
       <View style={styles.buttonContainer}>
         <View style={styles.card}>
           <Text style={styles.resultTitle}>
-            {diagnosis === "malignant" ? "Malignant" : "Benign"}
+            {diagnosis === "melanoma" ? "Melanoma" : "Actinic Keratosis"}
           </Text>
           <Text style={styles.infoText} numberOfLines={10}>
             Our algorithm predicted that the lesion is {diagnosis} with a
             confidence of {confidence}%
           </Text>
           <TouchableOpacity
-            style={styles.registerButton}
+            style={[styles.registerButton]}
             onPress={() => navigation.navigate("ImageScreen")}
           >
             <Text style={styles.registerText}>Select another image</Text>

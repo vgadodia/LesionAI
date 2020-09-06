@@ -13,15 +13,15 @@ function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.SVGcontainer}>
-        {/* <WelcomeSvg /> */}
-        <Image
+        <WelcomeSvg />
+        {/* <Image
           source={require("../assets/logo.png")}
           style={{ width: 300, height: 230 }}
-        />
+        /> */}
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Welcome to Lesion Finder</Text>
-        <Text style={styles.subtext}>Efficient Lesion Detection using ML.</Text>
+        <Text style={styles.title}>Welcome to LesionAI</Text>
+        <Text style={styles.subtext}>Efficient Lesion Detection using AI.</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity

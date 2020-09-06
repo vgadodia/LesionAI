@@ -17,6 +17,7 @@ import {
 } from "../components/lists";
 import useLocation from "./useLocation";
 import * as Location from "expo-location";
+import AnimatedLoader from "react-native-animated-loader";
 
 let initialMessages = [
   {
@@ -104,8 +105,9 @@ let finalMessages = [
 ];
 
 function MessagesScreen(props) {
-  const [messages, setMessages] = useState(initialMessages);
+  const [messages, setMessages] = useState();
   const [refreshing, setRefreshing] = useState(false);
+  const [loader, setLoader] = useState(false);
   // let location = useLocation();
 
   const getLocation = async () => {
@@ -121,39 +123,68 @@ function MessagesScreen(props) {
     }
   };
 
-  useEffect(() => {
-    // getResult();
-    console.log("Hello");
-  }, []);
+  const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+    return d;
+  };
+
+  const deg2rad = (deg) => {
+    return deg * (Math.PI / 180);
+  };
 
   const getResult = async () => {
-    const prediction = "Eiffel Tower";
+    setLoader(true);
     const { latitude, longitude } = await getLocation();
+    let data = [];
     console.log(latitude, longitude);
     try {
-      let response = await fetch("http://00c455fcd820.ngrok.io/maps", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          lat: latitude,
-          lon: longitude,
-        }),
-      });
+      let response = await fetch(
+        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
+          latitude +
+          "," +
+          longitude +
+          "&type=hospital&rankby=distance&keyword=cancer&key=" +
+          "AIzaSyADIV9xQ2UjNyKtEU9O7xVXmt0ZzynxQ4o",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
       let json = await response.json();
-      let arr = [];
-      arr.push(json["first"]);
-      arr.push(json["second"]);
-      arr.push(json["third"]);
-      arr.push(json["fourth"]);
-      arr.push(json["fifth"]);
-      arr.push(json["sixth"]);
-      console.log(arr);
-      setMessages(arr);
+      for (let i = 0; i < json["results"].length; i++) {
+        const name = json["results"][i]["name"];
+        const lat = json["results"][i]["geometry"]["location"]["lat"];
+        const lon = json["results"][i]["geometry"]["location"]["lng"];
+        let distance = getDistanceFromLatLonInKm(latitude, longitude, lat, lon);
+        distance = distance / 1.6;
+        distance = distance.toFixed(1);
+        let temp = {
+          id: i,
+          title: name,
+          maps: "https://maps.google.com/maps?q=" + lat + "," + lon,
+          link: "https://www.google.com/search?q=" + name,
+          description: distance + " mi away",
+        };
+        data.push(temp);
+      }
+      setMessages(data);
+      setLoader(false);
     } catch (error) {
       console.error(error);
+      setLoader(false);
     }
   };
 
@@ -164,6 +195,13 @@ function MessagesScreen(props) {
 
   return (
     <Screen>
+      <AnimatedLoader
+        visible={loader}
+        overlayColor="rgba(255,255,255,0.75)"
+        source={require("../assets/loader.json")}
+        animationStyle={styles.lottie}
+        speed={1}
+      />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Explore</Text>
       </View>
@@ -225,6 +263,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     top: 5,
+  },
+  lottie: {
+    width: 100,
+    height: 100,
   },
 });
 
