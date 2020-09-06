@@ -145,8 +145,8 @@ function ConfirmLibraryImage({ route, navigation }) {
             style={styles.registerButton}
             onPress={() =>
               navigation.navigate("ResultsScreen", {
-                diagnosis: "benign",
-                confidence: 99.08,
+                diagnosis: "actinic keratosis",
+                confidence: 96.53,
               })
             }
           >

@@ -13,11 +13,11 @@ function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.SVGcontainer}>
-        {/* <WelcomeSvg /> */}
-        <Image
+        <WelcomeSvg />
+        {/* <Image
           source={require("../assets/logo.png")}
           style={{ width: 300, height: 230 }}
-        />
+        /> */}
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Welcome to LesionAI</Text>

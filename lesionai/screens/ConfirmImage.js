@@ -100,7 +100,7 @@ function ConfirmImage({ route, navigation }) {
             style={styles.registerButton}
             onPress={() =>
               navigation.navigate("ResultsScreen", {
-                diagnosis: "malignant",
+                diagnosis: "melanoma",
                 confidence: 99.09,
               })
             }
