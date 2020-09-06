@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "lesionfinder",
-    "slug": "lesionfinder",
+    "name": "lesionai",
+    "slug": "lesionai",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
