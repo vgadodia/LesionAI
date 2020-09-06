@@ -20,8 +20,8 @@ function WelcomeScreen({ navigation }) {
         />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Welcome to Lesion Finder</Text>
-        <Text style={styles.subtext}>Efficient Lesion Detection using ML.</Text>
+        <Text style={styles.title}>Welcome to LesionAI</Text>
+        <Text style={styles.subtext}>Efficient Lesion Detection using AI.</Text>
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
